@@ -3,6 +3,10 @@
 
 default_platform(:android)
 
+  before_all do
+    setup_circle_ci
+  end
+  
   desc "Deploy a new alpha version to the Google Play"
   lane :build do
     gradle(
