@@ -8,7 +8,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/demo-react-native
-      - run: bundle check || bundle install --path vendor/bundle
+      - run: bundle install --path vendor/bundle
       - run: npm install
       - run: cd android
       - run:
