@@ -9,7 +9,7 @@ jobs:
       - attach_workspace:
           at: ~/demo-react-native
       - run: npm install
-      - run: cd android && ./gradlew assembleRelease
+      - run: cd android && fastlane build
       - store_artifacts:
           path: android/app/build/outputs/apk/release/app-release.apk
 
