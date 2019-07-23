@@ -1,0 +1,13 @@
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+  desc "Deploy a new alpha version to the Google Play"
+  lane :build do
+    gradle(
+      task: 'assemble',
+      build_type: 'Release'
+    )
+    
+  end
