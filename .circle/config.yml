@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  node:
+    working_directory: ~/awesome_project
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - run: npm install
+
+  android:
+    working_directory: ~/awesome_project/android
+    docker:
+      - image: circleci/android:api-27-node8-alpha
+    steps:
+      - checkout:
+          path: ~/awesome_project
+
+      - attach_workspace:
+          at: ~/awesome_project
+
+      - run: ./gradlew assembleRelease
+
+
+workflows:
+  version: 2
+  node-android-ios:
+    jobs:
+      - node
+      - android:
+          requires:
+            - node
