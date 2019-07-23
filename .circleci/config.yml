@@ -8,6 +8,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/demo-react-native
+      - run: gem update --system && gem install bundler
       - run: cd android && bundle install --path vendor/bundle
       - run: npm install
       - run: cd android && bundle exec fastlane build
