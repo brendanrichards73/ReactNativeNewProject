@@ -111,7 +111,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("awesome_project.keystore")
+            storeFile file("./awesome_project.keystore")
             storePassword "awesome"
             keyAlias "awesome_project"
             keyPassword "awesome"
