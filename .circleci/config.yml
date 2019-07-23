@@ -6,8 +6,12 @@ jobs:
       - image: circleci/android:api-28-node8-alpha
     steps:
       - checkout
+      - attach_workspace:
+          at: ~/demo-react-native
       - run: npm install
       - run: cd android && ./gradlew assembleRelease
+      - store_artifacts:
+          path: android/app/build/outputs/apk/release/app-release.apk
 
 
 workflows:
