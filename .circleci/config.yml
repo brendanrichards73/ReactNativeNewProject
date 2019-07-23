@@ -8,12 +8,9 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/demo-react-native
-      - run: bundle install --path vendor/bundle
+      - run: cd android && bundle install --path vendor/bundle
       - run: npm install
-      - run: cd android
-      - run:
-          name: fastlane
-          command: bundle exec fastlane build
+      - run: cd android && bundle exec fastlane build
       - store_artifacts:
           path: android/app/build/outputs/apk/release/app-release.apk
 
