@@ -1,7 +1,6 @@
 package com.awesomeproject;
 
 import android.app.Application;
-
 import com.facebook.react.ReactApplication;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.facebook.react.ReactNativeHost;
@@ -38,13 +37,13 @@ public class MainApplication extends Application implements ReactApplication {
         }
     };
 
-    @Override
-    public ReactNativeHost getReactNativeHost() {
+        @Override
+        public ReactNativeHost getReactNativeHost() {
         return mReactNativeHost;
     }
 
-    @Override
-    public void onCreate() {
+        @Override
+        public void onCreate() {
         super.onCreate();
         SoLoader.init(this, /* native exopackage */ false);
     }
