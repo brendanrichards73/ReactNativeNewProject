@@ -23,7 +23,7 @@ Once installed make sure to use React Native 0.59.1 as I found some issues with 
 Clone the project into your command pallette in VScode.
 
 
-Install React Navigation
+Install Navigation
 I found issues using React-Native-Navigation so opted for using React-Navigation.
 
 
@@ -43,6 +43,7 @@ Then follow the documentation for React-Native-Firebase Android installation.
 
 
 Firebase Cloud Messaging - Push Notifications
+
 I attempted to install and use firebase cloud messaging as a way of incorporating push notifications but there is currently a bug that prevents the message form being sent from the firebase console to an android device.  The error is that once a message is sent, the app on the emulator or physical device crashed and stops working.  This is something I am looking into.
 
 
