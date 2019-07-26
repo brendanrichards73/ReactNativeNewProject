@@ -43,7 +43,7 @@ render() {
     <View style={ styles.container }>
       <View style = { styles.inputContainer }>
         <TextInput
-          placeholder = "Seach Places"
+          placeholder = "Search Places"
           style = { styles.placeInput }
           value = { this.state.placeName }
           onChangeText = { this.placeNameChangeHandler }
