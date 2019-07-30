@@ -1,104 +1,145 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TextInput, Button, FlatList } from 'react-native';
-import ListItem from './components/ListItem';
-import { connect } from 'react-redux';
-import { addPlace } from './actions/place';
+import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
+import { createStore} from 'redux';
+import CounterApp from './src/CounterApp';
+import {Provider} from 'react-redux';
+
+
+const initialState = {
+  counter: 0
+}  
+
+const reducer = (state = initialState, action) => {
+  switch(action.type)
+  {
+    case 'INCREASE_COUNTER':
+      return{counter:state.counter+1}
+    case 'DECREASE_COUNTER':
+      return{counter:state.counter-1}
+  }
+  return state
+}
+
+const store = createStore(reducer)
+
+
+
 
 class App extends Component {
 
-  state = {
-    placeName: '',
-    places: []
+  render() {
+    return (
+      <Provider store={store}>
+        <CounterApp />
+      </Provider>
+      
+    )
   }
+ }
 
-  placeSubmitHandler = () => {
-    if(this.state.placeName.trim() === '') {
-      return;
-    }
-    this.props.add(this.state.placeName);
-}
+ export default App;
 
-placeNameChangeHandler = (value) => {
-  this.setState({
-    placeName: value
-  });    
-}
+// import React, { Component } from 'react';
+// import { StyleSheet, View, TextInput, Button, FlatList } from 'react-native';
+// import ListItem from './components/ListItem';
+// import { connect } from 'react-redux';
+// import { addPlace } from './actions/place';
 
-placesOutput = () => {
-   return (
-    <FlatList style = { styles.listContainer }
-      data = { this.props.places }
-      keyExtractor={(item, index) => index.toString()}
-      renderItem = { info => (
-        <ListItem 
-          placeName={ info.item.value }
-        />
-      )}
-    />
-  )
-}
+// class App extends Component {
 
-render() {
-  return (
-    <View style={ styles.container }>
-      <View style = { styles.inputContainer }>
-        <TextInput
-          placeholder = "Search Places"
-          style = { styles.placeInput }
-          value = { this.state.placeName }
-          onChangeText = { this.placeNameChangeHandler }
-        ></TextInput>
-        <Button title = 'Add' 
-          style = { styles.placeButton }
-          onPress = { this.placeSubmitHandler }
-        />
-        </View>
-        <View style = { styles.listContainer }>
-          { this.placesOutput() }
-        </View>
-      </View>
-    );
-  }
-}
+//   state = {
+//     placeName: '',
+//     places: []
+//   }
 
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 30,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%'
-  },
-  placeInput: {
-    width: '70%'
-  },
-  placeButton: {
-    width: '30%'
-  },
-  listContainer: {
-    width: '100%'
-  }
-});
+//   placeSubmitHandler = () => {
+//     if(this.state.placeName.trim() === '') {
+//       return;
+//     }
+//     this.props.add(this.state.placeName);
+// }
 
-const mapStateToProps = state => {
-  return {
-    places: state.places.places
-  }
-}
+// placeNameChangeHandler = (value) => {
+//   this.setState({
+//     placeName: value
+//   });    
+// }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    add: (name) => {
-      dispatch(addPlace(name))
-    }
-  }
-}
+// placesOutput = () => {
+//    return (
+//     <FlatList style = { styles.listContainer }
+//       data = { this.props.places }
+//       keyExtractor={(item, index) => index.toString()}
+//       renderItem = { info => (
+//         <ListItem 
+//           placeName={ info.item.value }
+//         />
+//       )}
+//     />
+//   )
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+// render() {
+//   return (
+//     <View style={ styles.container }>
+//       <View style = { styles.inputContainer }>
+//         <TextInput
+//           placeholder = "Search Places"
+//           style = { styles.placeInput }
+//           value = { this.state.placeName }
+//           onChangeText = { this.placeNameChangeHandler }
+//         ></TextInput>
+//         <Button title = 'Add' 
+//           style = { styles.placeButton }
+//           onPress = { this.placeSubmitHandler }
+//         />
+//         </View>
+//         <View style = { styles.listContainer }>
+//           { this.placesOutput() }
+//         </View>
+//       </View>
+//     );
+//   }
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     paddingTop: 30,
+//     justifyContent: 'flex-start',
+//     alignItems: 'center',
+//   },
+//   inputContainer: {
+//     flexDirection: 'row',
+//     justifyContent: 'space-between',
+//     alignItems: 'center',
+//     width: '100%'
+//   },
+//   placeInput: {
+//     width: '70%'
+//   },
+//   placeButton: {
+//     width: '30%'
+//   },
+//   listContainer: {
+//     width: '100%'
+//   }
+// });
+
+// const mapStateToProps = state => {
+//   return {
+//     places: state.places.places
+//   }
+// }
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     add: (name) => {
+//       dispatch(addPlace(name))
+//     }
+//   }
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App)
 
 
 
